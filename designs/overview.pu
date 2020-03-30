@@ -1,0 +1,7 @@
+@startuml
+title I/O overview
+In -> Le :convert to an vector
+Le -> Ex :execute and print
+Ex -> Ou :output the stack
+@enduml
+
