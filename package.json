@@ -1,0 +1,23 @@
+{
+  "name": "befunge-interpreter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpnykw/befunge-interpreter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpnykw/befunge-interpreter/issues"
+  },
+  "homepage": "https://github.com/jpnykw/befunge-interpreter#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
