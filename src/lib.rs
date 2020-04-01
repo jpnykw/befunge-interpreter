@@ -10,3 +10,9 @@ extern "C" {
 pub fn run() {
   log("Hello, wasm!");
 }
+
+#[wasm_bindgen]
+pub fn read(a: &str){
+  log(a);
+}
+

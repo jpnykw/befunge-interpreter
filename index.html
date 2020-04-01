@@ -7,6 +7,8 @@
 </head>
 
 <body>
+  <textarea id="code" placeholder="input"></textarea>
+  <button id="submit">submit</button>
   <div id="app"></div>
 
   <script type="module">
@@ -15,6 +17,9 @@
       await init();
     };
     run();
+    document.getElementById("submit").addEventListener("click",function() {
+      import('./pkg/befunge_interpreter.js').then(module => module.read(document.getElementById("code").value));
+    });
   </script>
 </body>
 </html>
