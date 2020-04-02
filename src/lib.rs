@@ -1,4 +1,5 @@
 use wasm_bindgen::prelude::*;
+mod exec;
 
 #[wasm_bindgen]
 extern "C" {
@@ -12,7 +13,9 @@ pub fn run() {
 }
 
 #[wasm_bindgen]
-pub fn read(a: &str){
-  log(a);
+pub fn read(code: &str){
+  log(code);
+  let temp = code.chars().collect::<Vec<char>>();
+  log(&format!("{:?}, {:?}", &temp, exec::run(&temp)));
 }
 
