@@ -17,8 +17,8 @@
       await init();
     };
     run();
-    document.getElementById("submit").addEventListener("click",function() {
-      import('./pkg/befunge_interpreter.js').then(module => module.read(document.getElementById("code").value));
+    document.querySelector("#submit").addEventListener("click",function() {
+      import('./pkg/befunge_interpreter.js').then(module => module.read(document.querySelector("#code").value));
     });
   </script>
 </body>
