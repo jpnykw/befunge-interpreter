@@ -12,12 +12,12 @@ pub fn run (
     pointer.1 += direction.1;
     try_count += 1;
 
-    if try_count > TRY_MAX {
+    if try_count >= TRY_MAX {
       break;
     }
   }
 
-  if try_count > TRY_MAX {
+  if try_count >= TRY_MAX {
     vec![2i64]
   } else {
     vec![1i64]
