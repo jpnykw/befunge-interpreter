@@ -16,7 +16,9 @@ pub fn run() {
 pub fn read(input: &str){
   log("\n---");
   log(&format!("input -> \n{}", input));
-  let result = exec::run(input);
+
+  let code = input.split('\n').collect::<Vec<&str>>();
+  let result = exec::run(code);
   log(&format!("result -> \n{:?}", result));
 }
 
