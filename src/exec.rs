@@ -1,5 +1,5 @@
 const TRY_MAX: i16 = std::i16::MAX;
-use super::log;
+use super::console;
 
 pub fn run (
   code: Vec<&str>
@@ -42,7 +42,7 @@ pub fn run (
           ':' => {},
           '\\' => {},
           '$' => {},
-          '.' => log::log(&format!("{:?} ", stack.pop().unwrap())),
+          '.' => console::log(&format!("{:?} ", stack.pop().unwrap())),
           ',' => {},
           '#' => {},
           'p' => {},
