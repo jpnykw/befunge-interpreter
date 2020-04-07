@@ -5,6 +5,7 @@ pub fn run (
 ) -> Vec<i64> {
   let mut direction: (usize, usize) = (1, 0); // (dx, dy)
   let mut pointer: (usize, usize) = (0, 0); // (x, y)
+  let mut stack: Vec<i64> = Vec::new();
   let mut try_count = 0;
 
   loop {
@@ -17,7 +18,36 @@ pub fn run (
           return vec![2i64];
         }
 
-        match line.chars().nth(pointer.0).unwrap() {
+        // https://en.wikipedia.org/wiki/Befunge
+        // Befunge-93 instruction list
+        let instruct = line.chars().nth(pointer.0).unwrap();
+        match instruct {
+          '0' ... '9' => stack.push(instruct as i64 - 48),
+          '+' => {},
+          '-' => {},
+          '*' => {},
+          '/' => {},
+          '%' => {},
+          '!' => {},
+          '`' => {},
+          '>' => {},
+          '<' => {},
+          '^' => {},
+          'v' => {},
+          '?' => {},
+          '_' => {},
+          '|' => {},
+          '"' => {},
+          ':' => {},
+          '\\' => {},
+          '$' => {},
+          '.' => {},
+          ',' => {},
+          '#' => {},
+          'p' => {},
+          'g' => {},
+          '&' => {},
+          '~' => {},
           '@' => break,
           _ => {}
         };
@@ -29,6 +59,6 @@ pub fn run (
     try_count += 1;
   }
 
-  vec![1i64] // finish
+  stack
 }
 
