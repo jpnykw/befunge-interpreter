@@ -15,8 +15,10 @@ pub fn run() {
 #[wasm_bindgen]
 pub fn read(input: &str){
   log("\n---");
-  log(&format!("input -> \n{}", input));
-  let result = exec::run(input);
-  log(&format!("result -> \n{:?}", result));
+  log(&format!("input -> {}", input));
+
+  let code = input.split('\n').collect::<Vec<&str>>();
+  let result = exec::run(code);
+  log(&format!("stack -> {:?}", result));
 }
 
