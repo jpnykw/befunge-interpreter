@@ -1,4 +1,5 @@
 const TRY_MAX: i16 = std::i16::MAX;
+use super::log;
 
 pub fn run (
   code: Vec<&str>
