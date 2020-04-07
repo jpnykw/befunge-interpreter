@@ -1,12 +1,27 @@
 const TRY_MAX: i16 = std::i16::MAX;
 use super::console;
 
+struct Stack {
+  data: Vec<i64>
+}
+
+impl Stack {
+  fn push(&mut self, value: i64) {
+    self.data.push(value);
+  }
+
+  fn pop(&mut self) -> i64 {
+    if self.data.len() == 0 { 0 }
+    else { self.data.pop().unwrap() }
+  }
+}
+
 pub fn run (
   code: Vec<&str>
 ) -> Vec<i64> {
-  let mut direction: (i32, i32) = (1, 0); // (dx, dy)
-  let mut pointer: (usize, usize) = (0, 0); // (x, y)
-  let mut stack: Vec<i64> = Vec::new();
+  let mut direction: (i32, i32) = (1, 0);
+  let mut pointer: (usize, usize) = (0, 0);
+  let mut stack = Stack { data: Vec::new() };
   let mut try_count = 0;
 
   loop {
@@ -42,7 +57,7 @@ pub fn run (
           ':' => {},
           '\\' => {},
           '$' => {},
-          '.' => console::log(&format!("{:?} ", stack.pop().unwrap())),
+          '.' => console::log(&format!("{:?} ", stack.pop())),
           ',' => {},
           '#' => {},
           'p' => {},
@@ -60,6 +75,6 @@ pub fn run (
     try_count += 1;
   }
 
-  stack
+  stack.data
 }
 
