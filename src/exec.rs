@@ -42,7 +42,7 @@ pub fn run (
           ':' => {},
           '\\' => {},
           '$' => {},
-          '.' => print!("{} ", stack.pop().unwrap()),
+          '.' => log::log(&format!("{:?} ", stack.pop().unwrap())),
           ',' => {},
           '#' => {},
           'p' => {},
