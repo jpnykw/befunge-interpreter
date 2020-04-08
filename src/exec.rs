@@ -39,13 +39,48 @@ pub fn run (
         let instruct = line.chars().nth(pointer.0).unwrap();
         match instruct {
           '0' ... '9' => stack.push(instruct as i64 - 48),
-          '+' => {},
-          '-' => {},
-          '*' => {},
-          '/' => {},
-          '%' => {},
-          '!' => {},
-          '`' => {},
+          '+' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir+sec);
+          },
+          '-' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir-sec);
+          },
+          '*' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir*sec);
+          },
+          '/' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir/sec);
+          },
+          '%' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir%sec);
+          },
+          '!' => {
+            let fir = stack.pop();
+            if fir == 0 {
+              stack.push(1);
+            } else {
+              stack.push(0);
+            }
+          },
+          '`' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            if fir > sec {
+              stack.push(1);
+            } else {
+              stack.push(0);
+            }
+          },
           '>' => direction = (1, 0),
           '<' => direction = (-1, 0),
           '^' => direction = (0, -1),
