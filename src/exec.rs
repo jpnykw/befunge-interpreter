@@ -1,3 +1,4 @@
+
 const TRY_MAX: i16 = std::i16::MAX;
 use super::console;
 
@@ -112,4 +113,3 @@ pub fn run (
 
   stack.data
 }
-
