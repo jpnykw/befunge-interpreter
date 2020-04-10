@@ -89,9 +89,20 @@ pub fn run (
           '_' => {},
           '|' => {},
           '"' => {},
-          ':' => {},
-          '\\' => {},
-          '$' => {},
+          ':' => {
+            let fir = stack.pop();
+            stack.push(fir);
+            stack.push(fir);
+          },
+          '\\' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(sec);
+            stack.push(fir);
+          },
+          '$' => {
+            let _ = stack.pop();
+          },
           '.' => console::log(&format!("{:?} ", stack.pop())),
           ',' => {},
           '#' => {},
