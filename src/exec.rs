@@ -101,7 +101,7 @@ pub fn run (
             stack.push(fir);
           },
           '$' => {
-            let _ = stack.pop();
+            stack.pop();
           },
           '.' => console::log(&format!("{:?} ", stack.pop())),
           ',' => {},
