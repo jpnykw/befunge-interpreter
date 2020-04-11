@@ -87,8 +87,8 @@ pub fn run (
           '^' => direction = (0, -1),
           'v' => direction = (0, 1),
           '?' => {},
-          '_' => {},
-          '|' => {},
+          '_' => direction = if stack.pop() == 0 { (1, 0) } else { (-1, 0) },
+          '|' => direction = if stack.pop() == 0 { (0, 1) } else { (0, -1) },
           '"' => {},
           ':' => {
             let fir = stack.pop();
