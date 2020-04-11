@@ -16,8 +16,9 @@ impl Stack {
   }
 }
 
+
 pub fn run (
-  code: Vec<&str>
+  code: Vec<Vec<char>>
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
@@ -29,14 +30,14 @@ pub fn run (
       TRY_MAX => return vec![2i64], // over
 
       _ => {
-        let line = code[pointer.1];
+        let line = &code[pointer.1];
         if line.len() <= pointer.0 {
           return vec![2i64];
         }
 
         // https://en.wikipedia.org/wiki/Befunge
         // Befunge-93 instruction list
-        let instruct = line.chars().nth(pointer.0).unwrap();
+        let instruct = line[pointer.0];
         match instruct {
           '0' ... '9' => stack.push(instruct as i64 - 48),
           '+' => {
@@ -118,6 +119,9 @@ pub fn run (
 
     pointer.0 += direction.0 as usize;
     pointer.1 += direction.1 as usize;
+    pointer.0 %= 128;
+    pointer.1 %= 128;
+    console::log(&format!("pointer: {:?}", pointer));
     try_count += 1;
   }
 

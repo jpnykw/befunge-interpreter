@@ -17,17 +17,25 @@ pub fn read(input: &str){
     console::log("too long");
     return;
   }
+  
   for i in &code {
     if i.len() > 127 {
       console::log("too long");
       return;
     }
   }
+  let mut frame: Vec<Vec<char>>  = vec![vec![' '; 128];128];
+  for i in 0..code.len() {
+    let mut chs = code[i].chars();
+    for j in 0..code[i].len(){
+      frame[i][j] = chs.next().unwrap();
+    }
+  }
 
   console::log("\n---");
   console::log(&format!("input -> {}", input));
-
-  let result = exec::run(code);
+  //console::log(&format!("input -> {:?}", frame));
+  let result = exec::run(frame);
   console::log(&format!("stack -> {:?}", result));
 }
 
