@@ -1,5 +1,6 @@
 const TRY_MAX: i16 = std::i16::MAX;
 use super::console;
+use rand::Rng;
 
 struct Stack {
   data: Vec<i64>
@@ -86,7 +87,16 @@ pub fn run (
           '<' => direction = (-1, 0),
           '^' => direction = (0, -1),
           'v' => direction = (0, 1),
-          '?' => {},
+          '?' => {
+            let direction_id = rand::thread_rng().gen_range(0,4);
+            match direction_id {
+                0 => direction = (1, 0),
+                1 => direction = (-1, 0),
+                2 => direction = (0, -1),
+                3 => direction = (0, 1),
+                _ => {}
+            };
+          },
           '_' => direction = if stack.pop() == 0 { (1, 0) } else { (-1, 0) },
           '|' => direction = if stack.pop() == 0 { (0, 1) } else { (0, -1) },
           '"' => {},
