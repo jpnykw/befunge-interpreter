@@ -12,13 +12,13 @@ pub fn run() {
 pub fn read(input: &str){
   let code = input.split('\n').collect::<Vec<&str>>();
 
-  if code.len() > 127 {
+  if code.len() > 128 {
     console::log("too long");
     return;
   }
 
   for i in &code {
-    if i.len() > 127 {
+    if i.len() > 128 {
       console::log("too long");
       return;
     }

@@ -19,7 +19,7 @@ impl Stack {
 
 
 pub fn run (
-  code: Vec<Vec<char>>
+  mut code: Vec<Vec<char>>
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
@@ -115,10 +115,25 @@ pub fn run (
             stack.pop();
           },
           '.' => console::log(&format!("{:?} ", stack.pop())),
-          ',' => {},
-          '#' => {},
-          'p' => {},
-          'g' => {},
+          ',' => console::log(&format!("{}",stack.pop() as u8 as char)),
+          '#' => {
+            pointer.0 += direction.0 as usize;
+            pointer.1 += direction.1 as usize;
+          },
+          'p' => {
+            let sec : usize = stack.pop() as usize;
+            let fir : usize = stack.pop() as usize;
+            let chr : char = stack.pop() as u8 as char;
+            console::log(&format!("sec -> {}",sec));
+            console::log(&format!("fir -> {}",fir));
+            console::log(&format!("chr -> {}",chr));
+            code[sec%128][fir%128] = chr;
+          },
+          'g' => {
+            let sec : usize = stack.pop() as usize;
+            let fir : usize = stack.pop() as usize;
+            stack.push(code[sec%128][fir%128] as i64);
+          },
           '&' => {},
           '~' => {},
           '@' => break,
@@ -134,6 +149,7 @@ pub fn run (
     console::log(&format!("pointer: {:?}", pointer));
     try_count += 1;
   }
+  console::log(&format!("end: {:?}",code));
 
   stack.data
 }
