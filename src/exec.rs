@@ -121,18 +121,18 @@ pub fn run (
             pointer.1 += direction.1 as usize;
           },
           'p' => {
-            let sec : usize = stack.pop() as u8 as usize;
-            let fir : usize = stack.pop() as u8 as usize;
+            let sec : usize = stack.pop() as usize;
+            let fir : usize = stack.pop() as usize;
             let chr : char = stack.pop() as u8 as char;
             console::log(&format!("sec -> {}",sec));
             console::log(&format!("fir -> {}",fir));
             console::log(&format!("chr -> {}",chr));
-            code[sec][fir] = chr;
+            code[sec%128][fir%128] = chr;
           },
           'g' => {
-            let sec : usize = stack.pop() as u8 as usize;
-            let fir : usize = stack.pop() as u8 as usize;
-            stack.push(code[sec][fir] as i64);
+            let sec : usize = stack.pop() as usize;
+            let fir : usize = stack.pop() as usize;
+            stack.push(code[sec%128][fir%128] as i64);
           },
           '&' => {},
           '~' => {},
