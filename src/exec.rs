@@ -37,118 +37,119 @@ pub fn run (
           return vec![2i64];
         }
 
-        // https://en.wikipedia.org/wiki/Befunge
-        // Befunge-93 instruction list
-        let instruct = line[pointer.0];
-        if !double_quotation_flag {
-            match instruct {
-              '0' ... '9' => stack.push(instruct as i64 - 48),
-              '+' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                stack.push(fir+sec);
-              },
-              '-' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                stack.push(fir-sec);
-              },
-              '*' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                stack.push(fir*sec);
-              },
-              '/' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                stack.push(fir/sec);
-              },
-              '%' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                stack.push(fir%sec);
-              },
-              '!' => {
-                let fir = stack.pop();
-                if fir == 0 {
-                  stack.push(1);
-                } else {
-                  stack.push(0);
-                }
-              },
-              '`' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                if fir > sec {
-                  stack.push(1);
-                } else {
-                  stack.push(0);
-                }
-              },
-              '>' => direction = (1, 0),
-              '<' => direction = (-1, 0),
-              '^' => direction = (0, -1),
-              'v' => direction = (0, 1),
-              '?' => {
-                let direction_id = rand::thread_rng().gen_range(0,4);
-                match direction_id {
-                    0 => direction = (1, 0),
-                    1 => direction = (-1, 0),
-                    2 => direction = (0, -1),
-                    3 => direction = (0, 1),
-                    _ => {}
-                };
-              },
-              '_' => direction = if stack.pop() == 0 { (1, 0) } else { (-1, 0) },
-              '|' => direction = if stack.pop() == 0 { (0, 1) } else { (0, -1) },
-              '"' => {
-                double_quotation_flag = true;
-              },
-              ':' => {
-                let fir = stack.pop();
-                stack.push(fir);
-                stack.push(fir);
-              },
-              '\\' => {
-                let sec = stack.pop();
-                let fir = stack.pop();
-                stack.push(sec);
-                stack.push(fir);
-              },
-              '$' => {
-                stack.pop();
-              },
-              '.' => console::log(&format!("{:?} ", stack.pop())),
-              ',' => console::log(&format!("{}",stack.pop() as u8 as char)),
-              '#' => {
-                pointer.0 += direction.0 as usize;
-                pointer.1 += direction.1 as usize;
-              },
-              'p' => {
-                let sec : usize = stack.pop() as usize;
-                let fir : usize = stack.pop() as usize;
-                let chr : char = stack.pop() as u8 as char;
-                console::log(&format!("sec -> {}",sec));
-                console::log(&format!("fir -> {}",fir));
-                console::log(&format!("chr -> {}",chr));
-                code[sec%128][fir%128] = chr;
-              },
-              'g' => {
-                let sec : usize = stack.pop() as usize;
-                let fir : usize = stack.pop() as usize;
-                stack.push(code[sec%128][fir%128] as i64);
-              },
-              '&' => {},
-              '~' => {},
-              '@' => break,
-              _ => {}
-            };
-        }else{
-            match instruct {
-                '"' => double_quotation_flag = false,
-                _ => stack.push(instruct as i64)
-            };
+        let mut instruct = line[pointer.0];
+
+        if double_quotation_flag {
+          match instruct {
+            '"' => double_quotation_flag = false,
+            _ => stack.push(instruct as i64)
+          };
+
+          instruct = ' ';
         }
+
+        match instruct {
+          '0' ..= '9' => stack.push(instruct as i64 - 48),
+          '+' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir+sec);
+          },
+          '-' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir-sec);
+          },
+          '*' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir*sec);
+          },
+          '/' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir/sec);
+          },
+          '%' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(fir%sec);
+          },
+          '!' => {
+            let fir = stack.pop();
+            if fir == 0 {
+              stack.push(1);
+            } else {
+              stack.push(0);
+            }
+          },
+          '`' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            if fir > sec {
+              stack.push(1);
+            } else {
+              stack.push(0);
+            }
+          },
+          '>' => direction = (1, 0),
+          '<' => direction = (-1, 0),
+          '^' => direction = (0, -1),
+          'v' => direction = (0, 1),
+          '?' => {
+            let direction_id = rand::thread_rng().gen_range(0,4);
+            match direction_id {
+                0 => direction = (1, 0),
+                1 => direction = (-1, 0),
+                2 => direction = (0, -1),
+                3 => direction = (0, 1),
+                _ => {}
+            };
+          },
+          '_' => direction = if stack.pop() == 0 { (1, 0) } else { (-1, 0) },
+          '|' => direction = if stack.pop() == 0 { (0, 1) } else { (0, -1) },
+          '"' => {
+            double_quotation_flag = true;
+          },
+          ':' => {
+            let fir = stack.pop();
+            stack.push(fir);
+            stack.push(fir);
+          },
+          '\\' => {
+            let sec = stack.pop();
+            let fir = stack.pop();
+            stack.push(sec);
+            stack.push(fir);
+          },
+          '$' => {
+            stack.pop();
+          },
+          '.' => console::log(&format!("{:?} ", stack.pop())),
+          ',' => console::log(&format!("{}",stack.pop() as u8 as char)),
+          '#' => {
+            pointer.0 += direction.0 as usize;
+            pointer.1 += direction.1 as usize;
+          },
+          'p' => {
+            let sec : usize = stack.pop() as usize;
+            let fir : usize = stack.pop() as usize;
+            let chr : char = stack.pop() as u8 as char;
+            console::log(&format!("sec -> {}",sec));
+            console::log(&format!("fir -> {}",fir));
+            console::log(&format!("chr -> {}",chr));
+            code[sec%128][fir%128] = chr;
+          },
+          'g' => {
+            let sec : usize = stack.pop() as usize;
+            let fir : usize = stack.pop() as usize;
+            stack.push(code[sec%128][fir%128] as i64);
+          },
+          '&' => {},
+          '~' => {},
+          '@' => break,
+          _ => {}
+        };
       }
     };
 
