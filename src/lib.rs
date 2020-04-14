@@ -2,7 +2,6 @@ use wasm_bindgen::prelude::*;
 mod console;
 mod exec;
 
-
 #[wasm_bindgen(start)]
 pub fn run() {
   console::log("Hello, wasm!");

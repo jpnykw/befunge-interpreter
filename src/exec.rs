@@ -1,7 +1,9 @@
-const TRY_MAX: i16 = std::i16::MAX;
+use std::char;
 use super::console;
 use rand::Rng;
 use std::char;
+
+const TRY_MAX: i16 = std::i16::MAX;
 
 struct Stack {
   data: Vec<i64>
