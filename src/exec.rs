@@ -1,7 +1,6 @@
 use std::char;
 use super::console;
 use rand::Rng;
-use std::char;
 
 const TRY_MAX: i16 = std::i16::MAX;
 
@@ -21,13 +20,15 @@ impl Stack {
 }
 
 pub fn run (
-  mut code: Vec<Vec<char>>
+  mut code: Vec<Vec<char>>,
+  input: &str
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
   let mut stack = Stack { data: Vec::new() };
 
   let mut try_count = 0;
+  let mut letter_input = input.chars();
   let mut double_quotation_flag = false;
 
   loop {
@@ -154,9 +155,38 @@ pub fn run (
             stack.push(code[sec%128][fir%128] as i64);
           },
 
-          '&' => {},
+          '&' => {
+            //前から文字を読み込み、0から9以外の数値がきた時に終わらせる
+            let mut push_data : i64 = 0;
+            let mut synbol: bool = false;
+            let mut input_nth = letter_input.nth(0);
+            if input_nth == Some('-') {
+              synbol = true;
+              input_nth = letter_input.nth(0);
+            }
+            while input_nth != None {
+              let input_char = input_nth.unwrap();
+              if '0' <= input_char && input_char <= '9' {
+                push_data = push_data*10+ ((input_char as u8)-'0' as u8) as i64;
+                input_nth = letter_input.nth(0);
+              }else{
+                break;
+              }
+            }
+            if synbol {
+              push_data *= -1;
+            }
+            stack.push(push_data);
 
-          '~' => {},
+          },
+
+          '~' => {
+            //前から1文字読み込む
+            let push_data = letter_input.nth(0);
+            if push_data != None {
+              stack.push(push_data.unwrap() as i64);
+            }
+          },
 
           '@' => break,
 
