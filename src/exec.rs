@@ -1,6 +1,7 @@
 const TRY_MAX: i16 = std::i16::MAX;
 use super::console;
 use rand::Rng;
+use std::char;
 
 struct Stack {
   data: Vec<i64>
@@ -131,7 +132,7 @@ pub fn run (
 
           '.' => console::log(&format!("{:?} ", stack.pop())),
 
-          ',' => console::log(&format!("{}",stack.pop() as u8 as char)),
+          ',' => console::log(&format!("{}",char::from_u32(stack.pop() as u32).unwrap())),
 
           '#' => {
             pointer.0 += direction.0 as usize;
