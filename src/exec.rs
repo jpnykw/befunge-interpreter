@@ -17,19 +17,19 @@ impl Stack {
   }
 }
 
-
 pub fn run (
   mut code: Vec<Vec<char>>
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
   let mut stack = Stack { data: Vec::new() };
+
   let mut try_count = 0;
   let mut double_quotation_flag = false;
 
   loop {
     match try_count {
-      TRY_MAX => return vec![2i64], // over
+      TRY_MAX => return vec![2i64],
 
       _ => {
         let line = &code[pointer.1];
@@ -50,31 +50,22 @@ pub fn run (
 
         match instruct {
           '0' ..= '9' => stack.push(instruct as i64 - 48),
-          '+' => {
+
+          '+' | '-' | '*' | '/' | '%' => {
             let sec = stack.pop();
             let fir = stack.pop();
-            stack.push(fir+sec);
+            stack.push(
+              match instruct {
+                '+' => fir + sec,
+                '-' => fir - sec,
+                '*' => fir * sec,
+                '/' => fir / sec,
+                '%' => fir % sec,
+                _ => 0
+              }
+            );
           },
-          '-' => {
-            let sec = stack.pop();
-            let fir = stack.pop();
-            stack.push(fir-sec);
-          },
-          '*' => {
-            let sec = stack.pop();
-            let fir = stack.pop();
-            stack.push(fir*sec);
-          },
-          '/' => {
-            let sec = stack.pop();
-            let fir = stack.pop();
-            stack.push(fir/sec);
-          },
-          '%' => {
-            let sec = stack.pop();
-            let fir = stack.pop();
-            stack.push(fir%sec);
-          },
+
           '!' => {
             let fir = stack.pop();
             if fir == 0 {
@@ -83,6 +74,7 @@ pub fn run (
               stack.push(0);
             }
           },
+
           '`' => {
             let sec = stack.pop();
             let fir = stack.pop();
@@ -92,62 +84,79 @@ pub fn run (
               stack.push(0);
             }
           },
-          '>' => direction = (1, 0),
-          '<' => direction = (-1, 0),
-          '^' => direction = (0, -1),
-          'v' => direction = (0, 1),
+
+          '>' | '<' | '^' | 'v' => {
+            direction = match instruct {
+              '>' => (1, 0),
+              '<' => (-1, 0),
+              '^' => (0, -1),
+              'v' => (0, 1),
+              _ => (0, 0)
+            };
+          }
+
           '?' => {
             let direction_id = rand::thread_rng().gen_range(0,4);
-            match direction_id {
-                0 => direction = (1, 0),
-                1 => direction = (-1, 0),
-                2 => direction = (0, -1),
-                3 => direction = (0, 1),
-                _ => {}
+            direction = match direction_id {
+                0 => (1, 0),
+                1 => (-1, 0),
+                2 => (0, -1),
+                3 => (0, 1),
+                _ => (0, 0)
             };
           },
+
           '_' => direction = if stack.pop() == 0 { (1, 0) } else { (-1, 0) },
+
           '|' => direction = if stack.pop() == 0 { (0, 1) } else { (0, -1) },
-          '"' => {
-            double_quotation_flag = true;
-          },
+
+          '"' => double_quotation_flag = true,
+
           ':' => {
             let fir = stack.pop();
             stack.push(fir);
             stack.push(fir);
           },
+
           '\\' => {
             let sec = stack.pop();
             let fir = stack.pop();
             stack.push(sec);
             stack.push(fir);
           },
+
           '$' => {
             stack.pop();
           },
+
           '.' => console::log(&format!("{:?} ", stack.pop())),
+
           ',' => console::log(&format!("{}",stack.pop() as u8 as char)),
+
           '#' => {
             pointer.0 += direction.0 as usize;
             pointer.1 += direction.1 as usize;
           },
+
           'p' => {
             let sec : usize = stack.pop() as usize;
             let fir : usize = stack.pop() as usize;
             let chr : char = stack.pop() as u8 as char;
-            console::log(&format!("sec -> {}",sec));
-            console::log(&format!("fir -> {}",fir));
-            console::log(&format!("chr -> {}",chr));
             code[sec%128][fir%128] = chr;
           },
+
           'g' => {
             let sec : usize = stack.pop() as usize;
             let fir : usize = stack.pop() as usize;
             stack.push(code[sec%128][fir%128] as i64);
           },
+
           '&' => {},
+
           '~' => {},
+
           '@' => break,
+
           _ => {}
         };
       }
@@ -157,10 +166,8 @@ pub fn run (
     pointer.1 += direction.1 as usize;
     pointer.0 %= 128;
     pointer.1 %= 128;
-    console::log(&format!("pointer: {:?}", pointer));
     try_count += 1;
   }
-  console::log(&format!("end: {:?}",code));
 
   stack.data
 }
