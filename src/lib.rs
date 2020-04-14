@@ -27,7 +27,7 @@ pub fn read(input: &str){
   let mut frame: Vec<Vec<char>> = vec![vec![' '; 128]; 128];
   for i in 0..code.len() {
     let mut chs = code[i].chars();
-    for j in 0..code[i].len(){
+    for j in 0..code[i].chars().count(){
       frame[i][j] = chs.next().unwrap();
     }
   }
