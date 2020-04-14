@@ -8,8 +8,8 @@ pub fn run() {
 }
 
 #[wasm_bindgen]
-pub fn read(input: &str){
-  let code = input.split('\n').collect::<Vec<&str>>();
+pub fn read(input: &str,pre_code: &str){
+  let code = pre_code.split('\n').collect::<Vec<&str>>();
 
   if code.len() > 128 {
     console::log("too long");
@@ -32,9 +32,10 @@ pub fn read(input: &str){
   }
 
   console::log("\n---");
+  console::log(&format!("code -> {}", pre_code));
   console::log(&format!("input -> {}", input));
 
-  let result = exec::run(frame);
+  let result = exec::run(frame,input);
   console::log(&format!("stack -> {:?}", result));
 }
 

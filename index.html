@@ -7,7 +7,8 @@
 </head>
 
 <body>
-  <textarea id="code" placeholder="input"></textarea>
+  <textarea id="code" placeholder="code"></textarea>
+  <textarea id="input" placeholder="input"></textarea>
   <button id="submit">submit</button>
   <div id="app"></div>
 
@@ -18,7 +19,7 @@
     };
     run();
     document.querySelector("#submit").addEventListener("click",function() {
-      import('./pkg/befunge_interpreter.js').then(module => module.read(document.querySelector("#code").value));
+      import('./pkg/befunge_interpreter.js').then(module => module.read(document.querySelector("#input").value,document.querySelector("#code").value));
     });
   </script>
 </body>
