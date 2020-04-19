@@ -1,0 +1,16 @@
+{
+  "name": "befunge-interpreter",
+  "collaborators": [
+    "jpnykw <jpnykw@gmail.com>",
+    "luckylat <lacklat.key@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "befunge_interpreter_bg.wasm",
+    "befunge_interpreter.js",
+    "befunge_interpreter.d.ts"
+  ],
+  "module": "befunge_interpreter.js",
+  "types": "befunge_interpreter.d.ts",
+  "sideEffects": "false"
+}
