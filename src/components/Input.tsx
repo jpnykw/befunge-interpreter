@@ -5,12 +5,13 @@ import { TextField } from '@material-ui/core';
 interface InputProps {
   label: String;
   value: String;
+  id: string;
 };
 
 const Input: React.FC<InputProps> = (props) => {
   return (
     <TextField
-      id="outlined-multiline-static"
+      id={props.id}
       label={props.label}
       multiline
       rows={5}
