@@ -12,6 +12,11 @@
   <button id="submit">submit</button>
   <div id="app"></div>
 
+  <div id="example"></div>
+
+  <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+
   <script type="module">
     import init from './pkg/befunge_interpreter.js';
     async function run() {
@@ -22,5 +27,6 @@
       import('./pkg/befunge_interpreter.js').then(module => module.read(document.querySelector("#input").value,document.querySelector("#code").value));
     });
   </script>
+  <script src="./dist/main.js"></script>
 </body>
 </html>
