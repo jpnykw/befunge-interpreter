@@ -12,14 +12,16 @@ const App: React.FC<{}> = () => {
       <Input
         label="Source Code"
         value='64+"!dlroW ,olleH">:#,_@'
+        id="Code"
       />
 
       <Input
         label="Input"
         value=""
+        id="Input"
       />
 
-      <Button color="primary">Run</Button>
+      <Button color="primary" id="Submit">Run</Button>
     </div>
   );
 };

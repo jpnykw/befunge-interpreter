@@ -18,9 +18,9 @@
       await init();
     };
     run();
-    // document.querySelector("#submit").addEventListener("click",function() {
-    //  import('./pkg/befunge_interpreter.js').then(module => module.read(document.querySelector("#input").value,document.querySelector("#code").value));
-    //});
+    document.querySelector("#Submit").addEventListener("click",function() {
+     import('./pkg/befunge_interpreter.js').then(module => module.read(document.querySelector("#Input").value,document.querySelector("#Code").value));
+    });
   </script>
   <script src="./build/bundle.js"></script>
 </body>
