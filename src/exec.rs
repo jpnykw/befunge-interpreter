@@ -156,14 +156,15 @@ pub fn run (
           },
 
           '&' => {
-            //前から文字を読み込み、0から9以外の数値がきた時に終わらせる
             let mut push_data : i64 = 0;
             let mut synbol: bool = false;
             let mut input_nth = letter_input.nth(0);
+
             if input_nth == Some('-') {
-              synbol = true;
               input_nth = letter_input.nth(0);
+              synbol = true;
             }
+
             while input_nth != None {
               let input_char = input_nth.unwrap();
               if '0' <= input_char && input_char <= '9' {
@@ -173,19 +174,16 @@ pub fn run (
                 break;
               }
             }
-            if synbol {
-              push_data *= -1;
-            }
-            stack.push(push_data);
 
+            push_data += if synbol { -1 } else { 0 };
+            stack.push(push_data);
           },
 
           '~' => {
-            //前から1文字読み込む
-            let push_data = letter_input.nth(0);
-            if push_data != None {
-              stack.push(push_data.unwrap() as i64);
-            }
+            match letter_input.nth(0) {
+              Some(v) => stack.push(v as i64),
+              None => {}
+            };
           },
 
           '@' => break,
