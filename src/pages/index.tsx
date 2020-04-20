@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Button } from '@material-ui/core';
 
-import Input from "./components/Input";
+import Input from "../components/Input";
 
 const App: React.FC<{}> = () => {
   return (
