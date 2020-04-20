@@ -1,4 +1,4 @@
-![Rust](https://github.com/jpnykw/befunge-interpreter/workflows/Rust/badge.svg)
+![Build and Deploy](https://github.com/jpnykw/befunge-interpreter/workflows/Build%20and%20Deploy/badge.svg) ![Rust](https://github.com/jpnykw/befunge-interpreter/workflows/Rust/badge.svg)
 
 # what's this
 
