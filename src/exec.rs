@@ -25,6 +25,8 @@ pub fn run (
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
+
+  let mut output = String::new();
   let mut stack = Stack { data: Vec::new() };
 
   let mut try_count = 0;
@@ -133,9 +135,11 @@ pub fn run (
             stack.pop();
           },
 
-          '.' => console::log(&format!("{:?} ", stack.pop())),
+          // '.' => console::log(&format!("{:?} ", stack.pop())),
+          '.' => output = format!("{}{}", output, stack.pop()),
 
-          ',' => console::log(&format!("{}",char::from_u32(stack.pop() as u32).unwrap())),
+          // ',' => console::log(&format!("{}",char::from_u32(stack.pop() as u32).unwrap())),
+          ',' => output = format!("{}{}", output, char::from_u32(stack.pop() as u32).unwrap()),
 
           '#' => {
             pointer.0 += direction.0 as usize;
@@ -200,5 +204,7 @@ pub fn run (
     try_count += 1;
   }
 
+  console::log("output:");
+  console::log(&format!("  {}", output));
   stack.data
 }

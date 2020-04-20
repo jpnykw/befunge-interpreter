@@ -4,11 +4,11 @@ mod exec;
 
 #[wasm_bindgen(start)]
 pub fn run() {
-  console::log("Hello, wasm!");
+  console::log("test: loaded wasm");
 }
 
 #[wasm_bindgen]
-pub fn read(input: &str,pre_code: &str){
+pub fn read(input: &str, pre_code: &str){
   let code = pre_code.split('\n').collect::<Vec<&str>>();
 
   if code.len() > 128 {
@@ -31,11 +31,23 @@ pub fn read(input: &str,pre_code: &str){
     }
   }
 
-  console::log("\n---");
-  console::log(&format!("code -> {}", pre_code));
-  console::log(&format!("input -> {}", input));
+  console::log("");
 
-  let result = exec::run(frame,input);
-  console::log(&format!("stack -> {:?}", result));
+  console::log("code:");
+  console::log(&format!("  {}", pre_code));
+
+  if input.chars().count() > 0 {
+    console::log("input:");
+    console::log(&format!("  {}", input));
+  }
+
+  console::log("");
+
+  // execute
+  let stack = exec::run(frame,input);
+
+  console::log("");
+  console::log("stack:");
+  console::log(&format!("{:?}", stack));
 }
 
