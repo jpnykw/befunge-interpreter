@@ -45,7 +45,7 @@ pub fn read(input: &str, pre_code: &str){
   console::log("");
 
   // execute
-  let stack = exec::run(frame,input);
+  let stack = exec::run(frame, input);
 
   console::log("");
   console::log("stack:");
