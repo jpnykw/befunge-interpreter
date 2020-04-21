@@ -173,23 +173,6 @@ cachedTextDecoder.decode();
 function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
-/**
-*/
-export function run() {
-    wasm.run();
-}
-
-/**
-* @param {string} input
-* @param {string} pre_code
-*/
-export function read(input, pre_code) {
-    var ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    var len0 = WASM_VECTOR_LEN;
-    var ptr1 = passStringToWasm0(pre_code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    var len1 = WASM_VECTOR_LEN;
-    wasm.read(ptr0, len0, ptr1, len1);
-}
 
 let cachegetUint64Memory0 = null;
 function getUint64Memory0() {
@@ -221,6 +204,24 @@ export function output(output) {
     var ptr0 = passStringToWasm0(output, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     var len0 = WASM_VECTOR_LEN;
     wasm.output(ptr0, len0);
+}
+
+/**
+*/
+export function run() {
+    wasm.run();
+}
+
+/**
+* @param {string} input
+* @param {string} pre_code
+*/
+export function read(input, pre_code) {
+    var ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len0 = WASM_VECTOR_LEN;
+    var ptr1 = passStringToWasm0(pre_code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len1 = WASM_VECTOR_LEN;
+    wasm.read(ptr0, len0, ptr1, len1);
 }
 
 function handleError(e) {
@@ -325,13 +326,6 @@ async function init(input) {
         } catch (e) {
             handleError(e)
         }
-    };
-    imports.wbg.__wbg_innerHTML_e8d6e24412013e4c = function(arg0, arg1) {
-        var ret = getObject(arg1).innerHTML;
-        var ptr0 = passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        var len0 = WASM_VECTOR_LEN;
-        getInt32Memory0()[arg0 / 4 + 1] = len0;
-        getInt32Memory0()[arg0 / 4 + 0] = ptr0;
     };
     imports.wbg.__wbg_innerHTML_ebf37095d2177081 = function(arg0, arg1, arg2) {
         getObject(arg0).innerHTML = getStringFromWasm0(arg1, arg2);
