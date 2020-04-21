@@ -1,6 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {BigInt64Array} stack 
+*/
+export function stack(stack: BigInt64Array): void;
+/**
+* @param {string} output 
+*/
+export function output(output: string): void;
+/**
 */
 export function run(): void;
 /**
@@ -13,6 +21,8 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly stack: (a: number, b: number) => void;
+  readonly output: (a: number, b: number) => void;
   readonly run: () => void;
   readonly read: (a: number, b: number, c: number, d: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;

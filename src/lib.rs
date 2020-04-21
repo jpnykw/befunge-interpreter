@@ -1,6 +1,7 @@
 use wasm_bindgen::prelude::*;
 mod console;
 mod exec;
+mod visualization;
 
 #[wasm_bindgen(start)]
 pub fn run() {

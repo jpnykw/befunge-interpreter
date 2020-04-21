@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 
 import Input from "../components/Input";
+import Output from "../components/Output";
 
 const App: React.FC<{}> = () => {
   return (
@@ -22,6 +23,12 @@ const App: React.FC<{}> = () => {
       />
 
       <Button color="primary" id="Submit">Run</Button>
+
+      <Output
+        label="Output"
+        value=""
+        id="Output"
+      />
     </div>
   );
 };

@@ -11,3 +11,13 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2"
 rand = { version = "0.7.3", features = ["wasm-bindgen"] }
 
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "Window",
+  "Document",
+  "Element",
+  "HtmlElement",
+  "HtmlTextAreaElement",
+  "HtmlCollection"
+]
