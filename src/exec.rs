@@ -1,7 +1,7 @@
 use std::char;
 use super::console;
 use rand::Rng;
-
+use super::visualization;
 const TRY_MAX: i16 = std::i16::MAX;
 
 struct Stack {
@@ -201,6 +201,7 @@ pub fn run (
     pointer.1 += direction.1 as usize;
     pointer.0 %= 128;
     pointer.1 %= 128;
+    visualization::output(&output);
     try_count += 1;
   }
 
