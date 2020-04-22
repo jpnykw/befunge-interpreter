@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import styled from 'styled-components';
 
 import {
+  Box,
   Button,
   Checkbox,
   Container,
@@ -42,17 +43,23 @@ const App: React.FC<{}> = () => {
           />
         </Grid>
 
-        <Button color="primary" size="large" id="Run">Run</Button>
+        <StyledButton color="primary" id="Run">
+          Run
+        </StyledButton>
 
-        <div onClick={toggle}>
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </div>
+        <Grid item xs={12} onClick={toggle}>
+          <Box textAlign="center">
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </Box>
+        </Grid>
 
-        <div>
-          <Collapse in={open}>
-            <Option />
-          </Collapse>
-        </div>
+        <Grid item xs={12}>
+          <Box textAlign="center">
+            <Collapse in={open}>
+              <Option />
+            </Collapse>
+          </Box>
+        </Grid>
 
         <Grid item xs={12}>
           <Output
@@ -64,5 +71,9 @@ const App: React.FC<{}> = () => {
     </Container>
   );
 };
+
+const StyledButton = styled(Button)`
+  font-size: 20px;
+`;
 
 ReactDOM.render(<App />, document.getElementById("app"));
