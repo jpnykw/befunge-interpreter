@@ -6,15 +6,22 @@ import {
   Button,
   Checkbox,
   Container,
+  Collapse,
   Grid
 } from '@material-ui/core';
 
+import {
+  ExpandLess,
+  ExpandMore,
+} from '@material-ui/icons';
+
 import Input from "../components/Input";
 import Output from "../components/Output";
+import Option from "../components/Option";
 
 const App: React.FC<{}> = () => {
-  const [state, setState] = React.useState(false);
-  const toggle = () => setState(!state);
+  const [open, setOpen] = React.useState(false);
+  const toggle = () => setOpen(!open);
 
   return (
     <Container>
@@ -35,9 +42,17 @@ const App: React.FC<{}> = () => {
           />
         </Grid>
 
-        <Checkbox checked={state} onChange={toggle} />
+        <Button color="primary" size="large" id="Run">Run</Button>
 
-        <Button color="primary" id="Submit">Run</Button>
+        <div onClick={toggle}>
+          {open ? <ExpandLess /> : <ExpandMore />}
+        </div>
+
+        <div>
+          <Collapse in={open}>
+            <Option />
+          </Collapse>
+        </div>
 
         <Grid item xs={12}>
           <Output
