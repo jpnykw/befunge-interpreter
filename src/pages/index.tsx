@@ -26,7 +26,6 @@ const App: React.FC<{}> = () => {
 
       <Output
         label="Output"
-        value=""
         id="Output"
       />
     </div>
