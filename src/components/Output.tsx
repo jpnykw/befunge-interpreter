@@ -1,15 +1,20 @@
 import * as React from "react";
+import styled from 'styled-components';
 
 import { TextField } from '@material-ui/core';
 
-interface InputProps {
+interface OutputProps {
   label: String;
   id: string;
 };
 
-const Input: React.FC<InputProps> = (props) => {
+const StyledTextField = styled(TextField)`
+  width: 100%;
+`;
+
+const Input: React.FC<OutputProps> = (props) => {
   return (
-    <TextField
+    <StyledTextField
       id={props.id}
       label={props.label}
       multiline
