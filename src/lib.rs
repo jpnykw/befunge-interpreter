@@ -1,11 +1,18 @@
 use wasm_bindgen::prelude::*;
+
+mod visualization;
+mod option;
+
 mod console;
 mod exec;
-mod visualization;
 
 #[wasm_bindgen]
 pub fn read(input: &str, pre_code: &str){
   let code = pre_code.split('\n').collect::<Vec<&str>>();
+
+  if option::isStepMode() {
+    console::log("OK");
+  }
 
   if code.len() > 128 {
     console::log("too long");

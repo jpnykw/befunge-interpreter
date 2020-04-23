@@ -1,6 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @returns {boolean} 
+*/
+export function isStepMode(): boolean;
+/**
 * @param {BigInt64Array} _stack 
 */
 export function stack(_stack: BigInt64Array): void;
@@ -18,6 +22,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly isStepMode: () => number;
   readonly stack: (a: number, b: number) => void;
   readonly output: (a: number, b: number) => void;
   readonly read: (a: number, b: number, c: number, d: number) => void;

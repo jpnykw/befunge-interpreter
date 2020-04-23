@@ -23,6 +23,8 @@ const Option: React.FC<{}> = () => {
             <Checkbox
               disableRipple
               checked={use}
+              value={use}
+              id="mode"
             />
           </ListItemIcon>
           <ListItemText
