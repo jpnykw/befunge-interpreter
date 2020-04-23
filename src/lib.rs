@@ -10,10 +10,6 @@ mod exec;
 pub fn read(input: &str, pre_code: &str){
   let code = pre_code.split('\n').collect::<Vec<&str>>();
 
-  if option::isStepMode() {
-    console::log("OK");
-  }
-
   if code.len() > 128 {
     console::log("too long");
     return;
@@ -47,7 +43,8 @@ pub fn read(input: &str, pre_code: &str){
   console::log("");
 
   // execute
-  let stack = exec::run(frame, input);
+  let mode = option::isStepMode();
+  let stack = exec::run(frame, input, mode);
 
   console::log("");
   console::log("stack:");

@@ -1,7 +1,11 @@
 use std::char;
+use std::{thread, time};
+use std::time::Duration;
+
 use super::console;
 use rand::Rng;
 use super::visualization;
+
 const TRY_MAX: i16 = std::i16::MAX;
 
 struct Stack {
@@ -21,7 +25,8 @@ impl Stack {
 
 pub fn run (
   mut code: Vec<Vec<char>>,
-  input: &str
+  input: &str,
+  mode: bool
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
@@ -44,7 +49,6 @@ pub fn run (
         }
 
         let mut instruct = line[pointer.0];
-
         if double_quotation_flag {
           match instruct {
             '"' => double_quotation_flag = false,
@@ -201,8 +205,13 @@ pub fn run (
     pointer.1 += direction.1 as usize;
     pointer.0 %= 128;
     pointer.1 %= 128;
+
     visualization::output(&output);
     try_count += 1;
+
+    if mode {
+      ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 5));
+    }
   }
 
   console::log("output:");
