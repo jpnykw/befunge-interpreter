@@ -31,7 +31,7 @@ const App: React.FC<{}> = () => {
           <Input
             label="Source Code"
             value='64+"!dlroW ,olleH">:#,_@'
-            id="Code"
+            id="code"
           />
         </Grid>
 
@@ -39,11 +39,11 @@ const App: React.FC<{}> = () => {
           <Input
             label="Input"
             value=""
-            id="Input"
+            id="input"
           />
         </Grid>
 
-        <StyledButton color="primary" id="Run">
+        <StyledButton color="primary" id="run">
           Run
         </StyledButton>
 
@@ -64,7 +64,7 @@ const App: React.FC<{}> = () => {
         <Grid item xs={12}>
           <Output
             label="Output"
-            id="Output"
+            id="output"
           />
         </Grid>
       </Grid>

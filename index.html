@@ -14,14 +14,17 @@
 
   <script type="module">
     import init from './pkg/befunge_interpreter.js';
-    async function run() {
-      await init();
-    };
-    run();
-    document.querySelector("#Run").addEventListener("click",function() {
-      import('./pkg/befunge_interpreter.js').then(module =>
-        module.read(document.querySelector("#Input").value,document.querySelector("#Code").value)
-      );
+    const setup = async () => await init();
+
+    setup().then(() => {
+      document.querySelector("#run").addEventListener("click",function() {
+        import('./pkg/befunge_interpreter.js').then(module =>
+          module.read(
+            document.querySelector("#input").value,
+            document.querySelector("#code").value
+          )
+        );
+      });
     });
   </script>
   <script src="./build/bundle.js"></script>

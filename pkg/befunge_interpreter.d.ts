@@ -1,16 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {BigInt64Array} stack 
+* @param {BigInt64Array} _stack 
 */
-export function stack(stack: BigInt64Array): void;
+export function stack(_stack: BigInt64Array): void;
 /**
 * @param {string} output 
 */
 export function output(output: string): void;
-/**
-*/
-export function run(): void;
 /**
 * @param {string} input 
 * @param {string} pre_code 
@@ -23,12 +20,10 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly stack: (a: number, b: number) => void;
   readonly output: (a: number, b: number) => void;
-  readonly run: () => void;
   readonly read: (a: number, b: number, c: number, d: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_exn_store: (a: number) => void;
-  readonly __wbindgen_start: () => void;
 }
 
 /**

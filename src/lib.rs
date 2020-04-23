@@ -3,11 +3,6 @@ mod console;
 mod exec;
 mod visualization;
 
-#[wasm_bindgen(start)]
-pub fn run() {
-  console::log("test: loaded wasm");
-}
-
 #[wasm_bindgen]
 pub fn read(input: &str, pre_code: &str){
   let code = pre_code.split('\n').collect::<Vec<&str>>();

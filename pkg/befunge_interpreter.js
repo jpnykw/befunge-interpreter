@@ -189,10 +189,10 @@ function passArray64ToWasm0(arg, malloc) {
     return ptr;
 }
 /**
-* @param {BigInt64Array} stack
+* @param {BigInt64Array} _stack
 */
-export function stack(stack) {
-    var ptr0 = passArray64ToWasm0(stack, wasm.__wbindgen_malloc);
+export function stack(_stack) {
+    var ptr0 = passArray64ToWasm0(_stack, wasm.__wbindgen_malloc);
     var len0 = WASM_VECTOR_LEN;
     wasm.stack(ptr0, len0);
 }
@@ -204,12 +204,6 @@ export function output(output) {
     var ptr0 = passStringToWasm0(output, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     var len0 = WASM_VECTOR_LEN;
     wasm.output(ptr0, len0);
-}
-
-/**
-*/
-export function run() {
-    wasm.run();
 }
 
 /**
@@ -397,7 +391,7 @@ async function init(input) {
 
     wasm = instance.exports;
     init.__wbindgen_wasm_module = module;
-    wasm.__wbindgen_start();
+
     return wasm;
 }
 
