@@ -16,7 +16,7 @@ const Option: React.FC<{}> = () => {
 
   return (
       <List>
-        <ListItem>
+        <StyledListItem>
           <ListItemIcon
             onClick={toggle}
           >
@@ -30,9 +30,14 @@ const Option: React.FC<{}> = () => {
           <ListItemText
             primary='Enable step-run mode'
           />
-        </ListItem>
+        </StyledListItem>
       </List>
   );
 }
+
+const StyledListItem: typeof ListItem = styled(ListItem)`
+  width: fit-content;
+  margin: 0 auto;
+`;
 
 export default Option;

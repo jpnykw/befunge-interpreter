@@ -74,6 +74,7 @@ const App: React.FC<{}> = () => {
 
 const StyledButton = styled(Button)`
   font-size: 20px;
+  margin: 0 10px;
 `;
 
 ReactDOM.render(<App />, document.getElementById("app"));
