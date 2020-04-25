@@ -1,9 +1,11 @@
 use std::char;
-use std::{thread, time};
-use std::time::Duration;
+use std::time::{Duration, Instant};
+use std::thread::sleep;
+
+use rand::Rng;
+use wasm_timer::Delay;
 
 use super::console;
-use rand::Rng;
 use super::visualization;
 
 const TRY_MAX: i16 = std::i16::MAX;
@@ -210,7 +212,9 @@ pub fn run (
     try_count += 1;
 
     if mode {
-      ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 5));
+      console::log("wait");
+      // sleep(Duration::new(1, 0)); // Runtime Error が起こる
+      Delay::new(Duration::from_millis(1000)); // 遅延してくれない
     }
   }
 
