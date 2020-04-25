@@ -1,10 +1,5 @@
 use std::char;
-use std::time::{Duration};
-use std::thread::sleep;
-
 use rand::Rng;
-use wasm_timer::Delay;
-use futures::poll;
 
 use super::console;
 use super::visualization;
@@ -29,7 +24,6 @@ impl Stack {
 pub fn run (
   mut code: Vec<Vec<char>>,
   input: &str,
-  mode: bool
 ) -> Vec<i64> {
   let mut direction: (i32, i32) = (1, 0);
   let mut pointer: (usize, usize) = (0, 0);
@@ -211,13 +205,6 @@ pub fn run (
 
     visualization::output(&output);
     try_count += 1;
-
-    if mode {
-      console::log("wait");
-      // sleep(Duration::new(1, 0)); // Runtime Error が起こる
-      // Delay::new(Duration::from_millis(1000)); // 遅延してくれない
-      poll(Delay::new(Duration::from_millis(1000)));
-    }
   }
 
   console::log("output:");

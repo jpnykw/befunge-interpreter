@@ -1,8 +1,6 @@
 use wasm_bindgen::prelude::*;
 
 mod visualization;
-mod option;
-
 mod console;
 mod exec;
 
@@ -41,10 +39,7 @@ pub fn read(input: &str, pre_code: &str){
   }
 
   console::log("");
-
-  // execute
-  let mode = option::isStepMode();
-  let stack = exec::run(frame, input, mode);
+  let stack = exec::run(frame, input);
 
   console::log("");
   console::log("stack:");
