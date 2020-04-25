@@ -1,9 +1,10 @@
 use std::char;
-use std::time::{Duration, Instant};
+use std::time::{Duration};
 use std::thread::sleep;
 
 use rand::Rng;
 use wasm_timer::Delay;
+use futures::poll;
 
 use super::console;
 use super::visualization;
@@ -214,7 +215,8 @@ pub fn run (
     if mode {
       console::log("wait");
       // sleep(Duration::new(1, 0)); // Runtime Error が起こる
-      Delay::new(Duration::from_millis(1000)); // 遅延してくれない
+      // Delay::new(Duration::from_millis(1000)); // 遅延してくれない
+      poll(Delay::new(Duration::from_millis(1000)));
     }
   }
 

@@ -47,6 +47,7 @@ const App: React.FC<{}> = () => {
           Run
         </StyledButton>
 
+        {/*
         <Grid item xs={12} onClick={toggle}>
           <Box textAlign="center">
             {open ? <ExpandLess /> : <ExpandMore />}
@@ -60,6 +61,7 @@ const App: React.FC<{}> = () => {
             </Collapse>
           </Box>
         </Grid>
+        */}
 
         <Grid item xs={12}>
           <Output
