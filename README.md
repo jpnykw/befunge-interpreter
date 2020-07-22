@@ -2,5 +2,11 @@
 
 # what's this
 
-This is an interpreter of befunge-93i, for web. If you want know about befunge-93, see instruction set in Wikipedia (https://en.wikipedia.org/wiki/Befunge)
+This is an interpreter for the language befunge-93. See Wikipedia(https://en.wikipedia.org/wiki/Befunge) for the language specification. This interpreter provides basic functionality. Special implementations will be done in the future, but don't expect much as this project is being developed as a hobby X
 
+# how to use
+
+You need to have Node.js and Rust installed to run it. At a minimum, you will need wasm-pack and live-server installed.
+
+build: `wasm-pack build --target web`
+run: `live-server --port=3000`
