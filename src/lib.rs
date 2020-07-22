@@ -1,11 +1,11 @@
 use wasm_bindgen::prelude::*;
 
-mod visualization;
 mod console;
 mod exec;
+mod visualization;
 
 #[wasm_bindgen]
-pub fn read(input: &str, pre_code: &str){
+pub fn read(input: &str, pre_code: &str) {
   let code = pre_code.split('\n').collect::<Vec<&str>>();
 
   if code.len() > 128 {
@@ -23,7 +23,7 @@ pub fn read(input: &str, pre_code: &str){
   let mut frame: Vec<Vec<char>> = vec![vec![' '; 128]; 128];
   for i in 0..code.len() {
     let mut chs = code[i].chars();
-    for j in 0..code[i].chars().count(){
+    for j in 0..code[i].chars().count() {
       frame[i][j] = chs.next().unwrap();
     }
   }
@@ -45,4 +45,3 @@ pub fn read(input: &str, pre_code: &str){
   console::log("stack:");
   console::log(&format!("{:?}", stack));
 }
-
