@@ -8,9 +8,13 @@ interface OutputProps {
   id: string;
 };
 
+const StyledTextField = styled(TextField)`
+  width: 100%;
+`;
+
 const Input: React.FC<OutputProps> = (props) => {
   return (
-    <TextField
+    <StyledTextField
       id={props.id}
       label={props.label}
       multiline
