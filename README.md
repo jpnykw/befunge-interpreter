@@ -1,4 +1,5 @@
-![Build and Deploy](https://github.com/jpnykw/befunge-interpreter/workflows/Build%20and%20Deploy/badge.svg) ![Rust](https://github.com/jpnykw/befunge-interpreter/workflows/Rust/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4123b6e0-3d6f-4a15-8ca9-5ac9453158f7/deploy-status)](https://app.netlify.com/sites/befunge-interpreter/deploys)
+![Rust](https://github.com/jpnykw/befunge-interpreter/workflows/Rust/badge.svg)
 
 # what's this
 
