@@ -20,11 +20,11 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '/'),
+    path: path.resolve(__dirname, 'build/'),
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, '/'),
+    contentBase: __dirname,
     port: DEV_PORT,
     hot: true,
   },
