@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 import {
@@ -16,9 +16,11 @@ import {
   ExpandMore,
 } from '@material-ui/icons';
 
-import Input from "../components/Input";
-import Output from "../components/Output";
-import Option from "../components/Option";
+import Input from '../components/Input';
+import Output from '../components/Output';
+import Option from '../components/Option';
+
+const sample_code = `"dlroW olleH">:#,_@`;
 
 const App: React.FC<{}> = () => {
   const [open, setOpen] = React.useState(false);
@@ -26,47 +28,31 @@ const App: React.FC<{}> = () => {
 
   return (
     <Container>
-      <Grid container spacing={3} alignItems="center" justify="center">
+      <Grid container spacing={3} alignItems='center' justify='center'>
         <Grid item xs={12}>
           <Input
-            label="Source Code"
-            value='64+"!dlroW ,olleH">:#,_@'
-            id="code"
+            label='Source Code'
+            value={sample_code}
+            id='code'
           />
         </Grid>
 
         <Grid item xs={12}>
           <Input
-            label="Input"
-            value=""
-            id="input"
+            label='Input'
+            value={''}
+            id='input'
           />
         </Grid>
 
-        <StyledButton color="primary" id="run">
+        <StyledButton color='primary' id='run'>
           Run
         </StyledButton>
 
-        {/*
-        <Grid item xs={12} onClick={toggle}>
-          <Box textAlign="center">
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </Box>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Box textAlign="center">
-            <Collapse in={open}>
-              <Option />
-            </Collapse>
-          </Box>
-        </Grid>
-        */}
-
         <Grid item xs={12}>
           <Output
-            label="Output"
-            id="output"
+            label='Output'
+            id='output'
           />
         </Grid>
       </Grid>
@@ -79,4 +65,4 @@ const StyledButton = styled(Button)`
   margin: 0 10px;
 `;
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById('app'));

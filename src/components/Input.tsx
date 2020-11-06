@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import styled from 'styled-components';
 
 import { TextField } from '@material-ui/core';
@@ -21,9 +21,10 @@ const Input: React.FC<InputProps> = (props) => {
       multiline
       rows={5}
       defaultValue={props.value}
-      variant="outlined"
+      variant='outlined'
     />
   );
 }
 
 export default Input;
+
