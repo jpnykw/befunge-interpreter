@@ -21,8 +21,6 @@
   "dependencies": {
     "@material-ui/icons": "^4.9.1",
     "@types/styled-components": "^5.1.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "live-server": "^1.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.0"
